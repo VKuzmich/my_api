@@ -14,7 +14,7 @@ class TransformersController < ApplicationController
   # GET / 1
   def show
 
-    @transformer = Transformer.find_by(params[:nickname])
+    @transformer = Transformer.find_by(nickname: params[:nickname])
 
     render json: { user_url: @transformer.user_url}
 
@@ -22,7 +22,7 @@ class TransformersController < ApplicationController
 
   # DELETE
   def destroy
-    @transformer = Transformer.find_by(params[:nickname])
+    @transformer = Transformer.find_by(nickname: params[:nickname])
     @transformer.destroy
 
     render json: { info: "link was deleted!" }

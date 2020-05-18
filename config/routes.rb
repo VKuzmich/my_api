@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :transformers, only: [:show, :create, :destroy]
-  # # post :create, to: 'words#create'
-  # get :nickname, to: 'transformers#show'
-  # post '', to: 'transformers#create'
-  # destroy :nickname, to: 'transformers#destroy'
+  resources :transformers, only: [:create, :destroy], param: :nickname
+  match ":nickname" => "transformers#show", via: [:get]
+
+  # :path => '/'
+  # resources :someone, param: :category do
+  #   resources :sometwo, param: :item
+  # end
 end
