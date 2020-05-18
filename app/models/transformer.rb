@@ -1,5 +1,5 @@
 class Transformer < ApplicationRecord
   before_save do
-    self.nickname = "nickname_#{user_url}"
+    self.nickname = "nickname_#{user_url.parameterize}"
   end
 end
