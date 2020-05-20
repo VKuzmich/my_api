@@ -32,6 +32,6 @@ class TransformersController < ApplicationController
   private
 
   def transformer_params
-    params.require(:transformer).permit(:user_url)
+    params.require(:transformer).permit(:user_url, :nickname)
   end
 end
