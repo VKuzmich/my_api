@@ -24,9 +24,8 @@ class TransformersController < ApplicationController
   def destroy
     @transformer = Transformer.find_by(nickname: params[:nickname])
     @transformer.destroy
-
-    render json: { info: "link was deleted!" }
-
+    # head :no_content
+    render json: { message: 'removed'}
   end
 
   private

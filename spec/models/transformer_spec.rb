@@ -14,14 +14,33 @@ RSpec.describe Transformer, type: :model do
   end
 
   describe 'before_save nickname' do
-    let!(:symbols) { Generator.new.generating_mix(5) }
 
-    it 'should accept generated symbols ' do
-      instance_double("Transformer", nickname: :symbols)
+    let(:model) { build(:transformer) }
+
+    it " nickname " do
+      expect(model.nickname).to eq(nil)
     end
 
-    it 'should accept certain number of symbols ' do
-     should validate_length_of(:nickname).is_equal_to(Transformer::NUMBER_OF_SYMBOLS)
+    it '' do
+      expect(Transformer.count).to eq(0)
+    end
+  end
+
+  describe "after save" do
+
+    let(:model) { build(:transformer) }
+
+    it "nickname has value" do
+      trans = double(:fake_trans)
+      allow(Generator).to receive(:new).and_return(trans)
+      allow(trans).to receive(:generating_mix).and_return('asdfg')
+      model.save
+      expect(model.nickname).to eq('asdfg')
+    end
+
+    it 'add + 1 to db' do
+      model.save
+      expect(Transformer.count).to eq(1)
     end
   end
 end
