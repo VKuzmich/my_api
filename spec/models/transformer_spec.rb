@@ -17,11 +17,11 @@ RSpec.describe Transformer, type: :model do
 
     let(:model) { build(:transformer) }
 
-    it " nickname " do
+    it "no nickname records" do
       expect(model.nickname).to eq(nil)
     end
 
-    it '' do
+    it 'no record in database' do
       expect(Transformer.count).to eq(0)
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe Transformer, type: :model do
       expect(model.nickname).to eq('asdfg')
     end
 
-    it 'add + 1 to db' do
+    it 'add one record to db' do
       model.save
       expect(Transformer.count).to eq(1)
     end
