@@ -14,7 +14,6 @@ RSpec.describe Transformer, type: :model do
   end
 
   describe 'before_save nickname' do
-
     let(:model) { build(:transformer) }
 
     it "no nickname records" do
@@ -27,7 +26,6 @@ RSpec.describe Transformer, type: :model do
   end
 
   describe "after save" do
-
     let(:model) { build(:transformer) }
 
     it "nickname has value" do

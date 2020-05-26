@@ -46,13 +46,41 @@ RSpec.describe TransformersController, :type => :controller do
     it { expect(JSON.parse(response.body)).to eq({ "user_url"=> transformer.user_url})}
   end
 
+  describe "show do not exist" do
+    before do
+      get :show, params: { nickname: 'nickname'}
+    end
+
+    it { expect(response.status).to eq 404 }
+  end
+
+
   describe "GET destroy" do
     let!(:transformer) { FactoryBot.create(:transformer) }
-    subject {delete :destroy, params: { nickname: transformer.nickname }, format: :json}
-
-    it { expect(response.body).to be_blank }
+    # subject {delete :destroy, params: { nickname: transformer.nickname }, format: :json}
+    before do
+      delete :destroy, params: { nickname: transformer.nickname }
+    end
+    # it { expect(Transformer.count).to eq(0) }
+    it { expect(JSON.parse(response.body)).to eq('message' => 'removed') }
     it { expect(response).to be_successful }
-    it { expect{subject}.to change(Transformer, :count).by(-1) }
+    it { expect(Transformer.count).to eq(0) }
+    # it "after delete show success message " do
+    #   # expect(JSON.parse(response.body)).to eq({message: 'link was deleted!'})
+    #   # expected = { message: "removed" }
+    #   # expect(response.parsed_body).to eq(expected)
+    #   # expect(response.parsed_body['message']).should =='link was deleted!'
+    # end
+  end
+
+  describe " destroy non existed" do
+
+    before do
+      delete :destroy, params: { nickname: 'nickname' }, format: :json
+    end
+
+    it { expect(response.status).to eq 404 }
+
     # it "after delete show success message " do
     #   # expect(JSON.parse(response.body)).to eq({message: 'link was deleted!'})
     #   # expected = { message: "removed" }

@@ -14,22 +14,9 @@ class Generator
 
   def generating_mix(number_of_symbols = DEFAULT_NUMBERS)
     raise(ArgumentError, 'negative array size') if number_of_symbols <= 0
-    # unless number_of_symbols.is_a?(Numeric)
-    #   raise ArgumentError.new("negative array size")
-    # end
 
     @get_mix = [*ALLOWED_LETTERS, *ALLOWED_NUMBERS,
                   *ALLOWED_CAPITALS, *ALLOWED_SYMBOLS].sample(number_of_symbols)
     @get_mix.join
-
   end
-  #
-  # def validate_arguments(number_of_symbols)
-  #   raise(ArgumentError, ":negative sample number") unless valid_number_of_symbols?(number_of_symbols)
-  # end
-  #
-  # def valid_number_of_symbols?(number_of_symbols)
-  #   number_of_symbols.is_a?(TrueClass) || number_of_symbols.is_a?(FalseClass)
-  # end
-
 end

@@ -15,6 +15,7 @@ RSpec.describe Generator, :type => :helper do
     let(:default_number_of_symbols) { 8 }
     let(:zero_number_of_symbols) { 0 }
     let(:negative_number_of_symbols) { -5 }
+
     context "initializer" do
       it "get_mix gets empty array by default" do
         expect(generator.get_mix).to eq([])
