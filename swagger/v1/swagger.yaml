@@ -1,0 +1,60 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/transformers":
+    post:
+      summary: 'Creates '
+      tags:
+      - transformers
+      parameters: []
+      responses:
+        '200':
+          description: transformer created
+          content: {}
+        '302':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_url:
+                  type: string
+                nickname:
+                  type: string
+              required:
+              - user_url
+              - nickname
+  "/nickname":
+    get:
+      summary: 'gets '
+      tags:
+      - transformers
+      parameters:
+      - name: transformer
+        in: path
+        schema:
+          type: object
+          properties:
+            user_url:
+              type: string
+            nickname:
+              type: string
+          required:
+          - user_url
+          - nickname
+        required: true
+      responses:
+        '404':
+          description: invalid request
+          content: {}
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

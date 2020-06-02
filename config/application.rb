@@ -36,3 +36,9 @@ module MyApi
     config.api_only = true
   end
 end
+
+if Rails.env.test?
+  RSpec.configure do |config|
+    config.swagger_dry_run = false
+  end
+end
