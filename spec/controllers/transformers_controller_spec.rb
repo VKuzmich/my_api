@@ -7,10 +7,11 @@ RSpec.describe TransformersController, :type => :controller do
   let(:transformer) { FactoryBot.create(:transformer) }
   let(:valid_url) { {user_url: 'google.com'}    }
   let(:invalid_url) { { user_url: 'goo' } }
+  let(:number_of_symbols) { Transformer::NUMBER_OF_SYMBOLS }
   before do
     trans = double(:fake_trans)
     allow(Generator).to receive(:new).and_return(trans)
-    allow(trans).to receive(:generating_mix).and_return('asdfg')
+    allow(trans).to receive(:generating_mix).and_return('as')
   end
 
   describe "POST create " do
@@ -21,8 +22,8 @@ RSpec.describe TransformersController, :type => :controller do
       end
       it { expect(response).to be_successful }
       it { expect(Transformer.count).to eq(1) }
-      it { expect(JSON.parse(response.body)).to eq({ "nickname" => 'asdfg'}) }
-      it { expect((JSON.parse(response.body)['nickname']).length).to eq(Transformer::NUMBER_OF_SYMBOLS)}
+      it { expect(JSON.parse(response.body)).to eq({ "nickname" => 'as'}) }
+      it { expect((JSON.parse(response.body)['nickname']).length).to eq(number_of_symbols)}
     end
 
 
