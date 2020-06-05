@@ -67,7 +67,6 @@ RSpec.describe TransformersController, type: :controller do
     before do
       delete :destroy, params: { nickname: 'nickname' }, format: :json
     end
-
     it { expect(response.status).to eq 404 }
   end
 end

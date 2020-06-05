@@ -8,14 +8,14 @@ paths:
     post:
       summary: 'Creates '
       tags:
-      - transformers
+      - create nickname
       parameters: []
       responses:
         '200':
           description: transformer created
           content: {}
         '302':
-          description: invalid request
+          description: invalid url
           content: {}
       requestBody:
         content:
@@ -25,33 +25,43 @@ paths:
               properties:
                 user_url:
                   type: string
-                nickname:
-                  type: string
               required:
               - user_url
-              - nickname
-  "/nickname":
+  "/{nickname}":
     get:
       summary: 'gets '
       tags:
-      - transformers
+      - show link
       parameters:
-      - name: transformer
+      - name: nickname
         in: path
-        schema:
-          type: object
-          properties:
-            user_url:
-              type: string
-            nickname:
-              type: string
-          required:
-          - user_url
-          - nickname
         required: true
+        schema:
+          type: string
       responses:
+        '200':
+          description: transformer gets
+          content: {}
         '404':
           description: invalid request
+          content: {}
+  "/transformers/{nickname}":
+    delete:
+      summary: destroy nickname
+      tags:
+      - destroy link and nickname
+      parameters:
+      - name: nickname
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: No content
+          content: {}
+        '404':
+          description: not_found
           content: {}
 servers:
 - url: https://{defaultHost}
