@@ -15,7 +15,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-
+gem 'rubocop-rails', require: false
+gem 'rubocop', '~> 0.85.0', require: false
+gem 'rubocop-performance', require: false
 gem 'rswag-api'
 gem 'rswag-ui'
 
@@ -26,7 +28,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
-  gem "rubycritic", require: false
+  gem 'rubycritic', require: false
   gem 'shoulda-matchers'
   gem 'simplecov', require: false, group: :test
   gem 'simplecov-rcov'

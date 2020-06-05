@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'swagger_helper'
 
 RSpec.describe 'transformers', type: :request do
@@ -6,17 +8,15 @@ RSpec.describe 'transformers', type: :request do
       tags 'transformers'
       consumes 'application/json'
       parameter name: :transformer, in: :body, schema: {
-          type: :object,
-          properties: {
-              user_url: { type: :string }
-
-          },
-          required: %w[user_url ]
+        type: :object,
+        properties: {
+          user_url: { type: :string }
+        },
+        required: %w[user_url]
       }
 
       response '200', 'transformer created' do
-        let(:transformer) { { user_url: 'google.com' }    }
-
+        let(:transformer) { { user_url: 'google.com' } }
         run_test!
       end
 
@@ -36,23 +36,12 @@ RSpec.describe 'transformers', type: :request do
 
       response '200', 'transformer gets' do
         let(:nickname) { Transformer.create(user_url: 'google.com').nickname }
-
         run_test!
       end
-
-
       response '404', 'invalid request' do
-
         let(:nickname) { 'nickname' }
         run_test!
       end
     end
   end
-
-
-
-
-
-
-
 end

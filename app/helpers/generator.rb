@@ -1,8 +1,8 @@
 class Generator
-  ALLOWED_LETTERS = %w[a c d e f h j k m n p q r t u v w x y]
-  ALLOWED_NUMBERS = %w[2 3 4 6 7 8 9]
-  ALLOWED_CAPITALS = %w[A C D E F H J K L M N P Q R T U V W X Y]
-  ALLOWED_SYMBOLS = %w[  ]
+  ALLOWED_LETTERS = %w[a c d e f h j k m n p q r t u v w x y].freeze
+  ALLOWED_NUMBERS = %w[2 3 4 6 7 8 9].freeze
+  ALLOWED_CAPITALS = %w[A C D E F H J K L M N P Q R T U V W X Y].freeze
+  ALLOWED_SYMBOLS = %w[]
   DEFAULT_NUMBERS = 8
 
   attr_accessor :get_mix

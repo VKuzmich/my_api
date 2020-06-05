@@ -3,7 +3,7 @@ class Transformer < ApplicationRecord
   validates :user_url,
             presence: true,
             format: { with: %r"\A(https?://)?[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]{2,6}(/.*)?\Z"i,
-                      :message => "Valid URL required"}
+                      message: 'Valid URL required' }
 
   before_save :set_nickname
 

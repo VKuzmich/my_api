@@ -1,5 +1,4 @@
 class TransformersController < ApplicationController
-
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def create
@@ -15,7 +14,7 @@ class TransformersController < ApplicationController
     @transformer = Transformer.find_by(nickname: params[:nickname])
     raise ActiveRecord::RecordNotFound unless @transformer
 
-    render json: { user_url: @transformer.user_url}
+    render json: { user_url: @transformer.user_url }
   end
 
   def destroy
@@ -23,16 +22,15 @@ class TransformersController < ApplicationController
     raise ActiveRecord::RecordNotFound unless @transformer
 
     @transformer.destroy
-    render json: { message: 'removed'}
+    render json: { message: 'removed' }
   end
 
   private
+    def record_not_found
+      render json: { error: '404 Not Found' }, status: :not_found
+     end
 
-  def record_not_found
-    render json: {error: '404 Not Found'}, status: :not_found
-  end
-
-  def transformer_params
-    params.require(:transformer).permit(:user_url)
-  end
+    def transformer_params
+      params.require(:transformer).permit(:user_url)
+    end
 end

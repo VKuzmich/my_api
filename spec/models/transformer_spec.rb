@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Transformer, type: :model do
@@ -11,14 +13,14 @@ RSpec.describe Transformer, type: :model do
     it { is_expected.not_to allow_value('http//foo.com').for(:user_url) }
     it { is_expected.not_to allow_value('http:/foo.com').for(:user_url) }
     it { is_expected.not_to allow_value('http://foo..com').for(:user_url) }
-    it { is_expected.not_to allow_value('buz').for(:user_url)}
-    it { is_expected.not_to allow_value('b.').for(:user_url)}
+    it { is_expected.not_to allow_value('buz').for(:user_url) }
+    it { is_expected.not_to allow_value('b.').for(:user_url) }
   end
 
   describe 'before_save nickname' do
     let(:model) { build(:transformer) }
 
-    it "no nickname records" do
+    it 'no nickname records' do
       expect(model.nickname).to eq(nil)
     end
 
@@ -29,8 +31,8 @@ RSpec.describe Transformer, type: :model do
 
   describe '.generate_nickname' do
     let(:fake_model) { create(:transformer) }
-    let!(:transform1) { Transformer.create(user_url: "find.ua") }
-    let!(:transform2) { Transformer.create(user_url: "qwe.rt") }
+    let!(:transform1) { Transformer.create(user_url: 'find.ua') }
+    let!(:transform2) { Transformer.create(user_url: 'qwe.rt') }
     before do
     end
 
@@ -38,17 +40,20 @@ RSpec.describe Transformer, type: :model do
       generator_instance = double(:fake_trans1)
       allow(Generator).to receive(:new).and_return(generator_instance)
       allow(generator_instance).to receive(:generating_mix)
-                                       .and_return(transform1.nickname, transform2.nickname, 'qwerty', 'asdf')
+        .and_return(transform1.nickname,
+                    transform2.nickname,
+                    'qwerty',
+                    'asdf')
       expect(Generator).to receive(:new).once
       expect(generator_instance).to receive(:generating_mix).exactly(3).times
-      expect(Transformer.create(user_url: "new.ua").nickname).to eq('qwerty')
+      expect(Transformer.create(user_url: 'new.ua').nickname).to eq('qwerty')
     end
   end
 
-  describe "after save" do
+  describe 'after save' do
     let(:model) { build(:transformer) }
 
-    it "nickname has value" do
+    it 'nickname has value' do
       trans = double(:fake_trans)
       allow(Generator).to receive(:new).and_return(trans)
       allow(trans).to receive(:generating_mix).and_return('asdfg')
