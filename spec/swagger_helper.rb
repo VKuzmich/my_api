@@ -13,19 +13,13 @@ RSpec.configure do |config|
       },
       paths: {},
       servers: [
-        # {
-        #   url: 'http://localhost:3000',
-        #   description: 'local server'
-        # },
         {
-          "url": "http://blooming-harbor-05810.herokuapp.com",
-          "description": "server on heroku"
-          # url: 'http://{defaultHost}',
-          # variables: {
-          #   defaultHost: {
-          #     default: 'www.example.com'
-          #   }
-          # }
+          url: 'http://localhost:3000',
+          description: 'local server'
+        },
+        {
+          url: 'https://blooming-harbor-05810.herokuapp.com',
+          description: 'server on heroku'
         }
       ]
     }
