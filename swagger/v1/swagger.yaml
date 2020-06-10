@@ -66,5 +66,5 @@ paths:
 servers:
 - url: http://localhost:3000
   description: local server
-- url: http://blooming-harbor-05810.herokuapp.com
+- url: https://blooming-harbor-05810.herokuapp.com
   description: server on heroku
