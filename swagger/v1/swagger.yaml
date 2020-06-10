@@ -64,5 +64,5 @@ paths:
           description: not_found
           content: {}
 servers:
-- url: http://blooming-harbor-05810.herokuapp.com
+- url: blooming-harbor-05810.herokuapp.com
   description: server on heroku
