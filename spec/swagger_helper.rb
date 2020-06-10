@@ -18,8 +18,8 @@ RSpec.configure do |config|
         #   description: 'local server'
         # },
         {
-          url: 'blooming-harbor-05810.herokuapp.com',
-          description: 'server on heroku'
+          "url": "http://blooming-harbor-05810.herokuapp.com",
+          "description": "server on heroku"
           # url: 'http://{defaultHost}',
           # variables: {
           #   defaultHost: {
