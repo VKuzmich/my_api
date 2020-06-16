@@ -20,7 +20,7 @@ RSpec.describe 'transformers', type: :request do
         run_test!
       end
 
-      response '302', 'invalid url' do
+      response '422', 'invalid url' do
         let(:invalid_url) { { user_url: 'goo' } }
         let(:transformer) { { user_url: :invalid_url } }
         run_test!

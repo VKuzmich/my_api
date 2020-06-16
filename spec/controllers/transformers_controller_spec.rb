@@ -24,15 +24,13 @@ RSpec.describe TransformersController, type: :controller do
       it { expect((JSON.parse(response.body)['nickname']).length).to eq(number_of_symbols) }
     end
 
-
     context 'with invalid data' do
       before do
         post :create, params: { transformer: invalid_url }
       end
 
-      it { expect(response).to_not be_successful }
+      it { expect(JSON.parse(response.body)).to eq('user_url' =>  ['Valid URL required']) }
       it { expect { response }.to_not change(Transformer, :count) }
-      it { expect(response).to redirect_to transformers_path }
     end
   end
 

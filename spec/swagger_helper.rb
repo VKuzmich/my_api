@@ -12,17 +12,11 @@ RSpec.configure do |config|
         version: 'v1'
       },
       paths: {},
-      servers: [
-        {
-            url: '/'
-        #   url: 'http://localhost:3000',
-        #   description: 'local server'
-        # },
-        # {
-        #   url: 'https://blooming-harbor-05810.herokuapp.com',
-        #   description: 'server on heroku'
-        }
-      ]
+      # servers: [
+      #   {
+      #     url: '/'
+      #   }
+      # ]
     }
   }
   config.swagger_format = :yaml

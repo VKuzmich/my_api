@@ -3,10 +3,11 @@ class TransformersController < ApplicationController
 
   def create
     @transformer = Transformer.new(transformer_params)
+
     if @transformer.save
       render json: { nickname: @transformer.nickname }
     else
-      redirect_to @transformer
+      render json: @transformer.errors, status: :unprocessable_entity
     end
   end
 
