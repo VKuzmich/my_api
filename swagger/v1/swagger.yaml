@@ -1,20 +1,21 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
-  version: v1
+  title: This web creates short url. It looks like a clone of bit.ly
+  version: ''
+  description: 'Create short url, Get original link, Destroy url from database '
 paths:
   "/transformers":
     post:
-      summary: 'Creates '
+      summary: ''
       tags:
-      - create nickname
+      - Create short link
       parameters: []
       responses:
         '200':
-          description: transformer created
+          description: short url created
           content: {}
-        '302':
+        '422':
           description: invalid url
           content: {}
       requestBody:
@@ -29,9 +30,9 @@ paths:
               - user_url
   "/{nickname}":
     get:
-      summary: 'gets '
+      summary: ''
       tags:
-      - show link
+      - Show link
       parameters:
       - name: nickname
         in: path
@@ -40,16 +41,16 @@ paths:
           type: string
       responses:
         '200':
-          description: transformer gets
+          description: get url
           content: {}
         '404':
           description: invalid request
           content: {}
   "/transformers/{nickname}":
     delete:
-      summary: destroy nickname
+      summary: ''
       tags:
-      - destroy link and nickname
+      - Destroy saved link and short url
       parameters:
       - name: nickname
         in: path

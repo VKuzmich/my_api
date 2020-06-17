@@ -8,10 +8,14 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'This web creates short url. It looks like a clone of bit.ly',
+        version: '',
+        description:
+              'Create short url, Get original link, Destroy url from database '
+
       },
       paths: {},
+      #
       # servers: [
       #   {
       #     url: '/'

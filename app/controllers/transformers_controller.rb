@@ -2,12 +2,12 @@ class TransformersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def create
-    @transformer = Transformer.new(transformer_params)
+    transformer = Transformer.new(transformer_params)
 
-    if @transformer.save
-      render json: { nickname: @transformer.nickname }
+    if transformer.save
+      render json: { nickname: transformer.nickname }
     else
-      render json: @transformer.errors, status: :unprocessable_entity
+      render json: transformer.errors, status: :unprocessable_entity
     end
   end
 
