@@ -1,11 +1,12 @@
 class TransformersController < ApplicationController
+  include UrlHelper
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def create
     transformer = Transformer.new(transformer_params)
 
     if transformer.save
-      render json: { nickname: transformer.nickname, redirect_url: "#{request.original_url}/#{transformer.nickname}" }
+      render json: { nickname: transformer.nickname, redirect_url: build_url(transformer.nickname) }
     else
       render json: transformer.errors, status: :unprocessable_entity
     end
@@ -31,7 +32,7 @@ class TransformersController < ApplicationController
   private
     def record_not_found
       render json: { error: '404 Not Found' }, status: :not_found
-     end
+    end
 
     def transformer_params
       params.require(:transformer).permit(:user_url)

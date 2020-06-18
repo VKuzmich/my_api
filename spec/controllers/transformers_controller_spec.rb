@@ -21,7 +21,7 @@ RSpec.describe TransformersController, type: :controller do
       it { expect(response).to be_successful }
       it { expect(Transformer.count).to eq(1) }
       it { expect(JSON.parse(response.body))
-               .to eq({'nickname' => 'as', 'redirect_url' => 'http://test.host/transformers/as'}) }
+               .to eq({'nickname' => 'as', 'redirect_url' => 'http://test.host/as'}) }
       it { expect((JSON.parse(response.body)['nickname']).length).to eq(number_of_symbols) }
     end
 
