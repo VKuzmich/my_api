@@ -1,5 +1,4 @@
 class Transformer < ApplicationRecord
-  NUMBER_OF_SYMBOLS = 2
   validates :user_url,
             presence: true,
             format: { with: %r"\A(https?://)?[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]{2,6}(/.*)?\Z"i,
@@ -13,7 +12,7 @@ class Transformer < ApplicationRecord
 
   def generate_nickname
     counter = total_count =  0
-    number_of_symbols = NUMBER_OF_SYMBOLS
+    number_of_symbols = ENV.fetch('NUMBER_OF_SYMBOLS', 3)
     generator = Generator.new
 
     begin
@@ -25,7 +24,6 @@ class Transformer < ApplicationRecord
         counter = 0
       end
     end while Transformer.where(nickname: nickname).exists?
-    # puts "Number of trials: #{total_count}"
     nickname
   end
 end

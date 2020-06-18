@@ -6,11 +6,12 @@ RSpec.describe TransformersController, type: :controller do
   let(:transformer) { FactoryBot.create(:transformer) }
   let(:valid_url) { { user_url: 'google.com' }    }
   let(:invalid_url) { { user_url: 'goo' } }
-  let(:number_of_symbols) { Transformer::NUMBER_OF_SYMBOLS }
+  let(:number_of_symbols) { 5 }
+  let(:nickname) { 'asdfg'}
   before do
     transformer = double(:fake_trans)
     allow(Generator).to receive(:new).and_return(transformer)
-    allow(transformer).to receive(:generating_mix).and_return('as')
+    allow(transformer).to receive(:generating_mix).and_return(nickname)
   end
 
   describe 'POST create ' do
@@ -21,7 +22,7 @@ RSpec.describe TransformersController, type: :controller do
       it { expect(response).to be_successful }
       it { expect(Transformer.count).to eq(1) }
       it { expect(JSON.parse(response.body))
-               .to eq({'nickname' => 'as', 'redirect_url' => 'http://test.host/as'}) }
+               .to eq({'nickname' => nickname, 'redirect_url' =>"http://test.host/#{nickname}"}) }
       it { expect((JSON.parse(response.body)['nickname']).length).to eq(number_of_symbols) }
     end
 
