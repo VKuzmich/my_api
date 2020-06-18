@@ -25,7 +25,7 @@ class Transformer < ApplicationRecord
         counter = 0
       end
     end while Transformer.where(nickname: nickname).exists?
-    puts "Number of trials: #{total_count}"
+    # puts "Number of trials: #{total_count}"
     nickname
   end
 end

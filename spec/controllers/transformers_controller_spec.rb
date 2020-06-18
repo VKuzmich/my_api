@@ -8,9 +8,9 @@ RSpec.describe TransformersController, type: :controller do
   let(:invalid_url) { { user_url: 'goo' } }
   let(:number_of_symbols) { Transformer::NUMBER_OF_SYMBOLS }
   before do
-    trans = double(:fake_trans)
-    allow(Generator).to receive(:new).and_return(trans)
-    allow(trans).to receive(:generating_mix).and_return('as')
+    transformer = double(:fake_trans)
+    allow(Generator).to receive(:new).and_return(transformer)
+    allow(transformer).to receive(:generating_mix).and_return('as')
   end
 
   describe 'POST create ' do
@@ -20,7 +20,7 @@ RSpec.describe TransformersController, type: :controller do
       end
       it { expect(response).to be_successful }
       it { expect(Transformer.count).to eq(1) }
-      it { expect(JSON.parse(response.body)).to eq({ 'nickname' => 'as' }) }
+      it { expect(JSON.parse(response.body)).to eq({'nickname' => 'as', 'redirect_url' => 'test.host/as'}) }
       it { expect((JSON.parse(response.body)['nickname']).length).to eq(number_of_symbols) }
     end
 
@@ -35,15 +35,38 @@ RSpec.describe TransformersController, type: :controller do
   end
 
   describe 'GET show' do
-    before do
-      get :show, params: { nickname: transformer.nickname }
+    context 'url with http' do
+      let(:url) { 'http://google.com' }
+      let(:transformer) { FactoryBot.create(:transformer, user_url: url) }
+      subject { get :show, params: { nickname: transformer.nickname } }
+
+      it 'redirects to url with http' do
+        expect(subject).to redirect_to(url)
+      end
     end
 
-    it { expect(response).to be_successful }
-    it { expect(JSON.parse(response.body)).to eq({ 'user_url' => transformer.user_url }) }
+    context 'url with https' do
+      let(:url) { 'https://google.com' }
+      let(:transformer) { FactoryBot.create(:transformer, user_url: url) }
+      subject { get :show, params: { nickname: transformer.nickname } }
+
+      it 'redirects to url with https' do
+        expect(subject).to redirect_to(url)
+      end
+    end
+
+    context 'url without http' do
+      let(:url) { 'google.com' }
+      let(:transformer) { FactoryBot.create(:transformer, user_url: url) }
+      subject { get :show, params: { nickname: transformer.nickname } }
+
+      it 'redirects to url without http' do
+        expect(subject).to redirect_to("http://#{url}")
+      end
+    end
   end
 
-  describe 'show do not exist' do
+  describe 'short link does not exist' do
     before do
       get :show, params: { nickname: 'nickname' }
     end

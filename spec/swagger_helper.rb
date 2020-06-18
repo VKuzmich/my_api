@@ -8,19 +8,18 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'This web creates short url. It looks like a clone of bit.ly',
+        title: 'This web-app creates short url.',
         version: '',
         description:
-              'Create short url, Get original link, Destroy url from database '
+          "Description:
 
+          It works similar to bit.ly.
+          This app creates short url for long links.
+          When it has been created, you can use in messages where it requires limited numbers of symbols.
+          When person use this short url, it will redirect to original link.
+          If you do not need this link, you can delete it from database just using short url"
       },
       paths: {},
-      #
-      # servers: [
-      #   {
-      #     url: '/'
-      #   }
-      # ]
     }
   }
   config.swagger_format = :yaml

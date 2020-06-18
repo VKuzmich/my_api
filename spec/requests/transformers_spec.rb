@@ -4,8 +4,8 @@ require 'swagger_helper'
 
 RSpec.describe 'transformers', type: :request do
   path '/transformers' do
-    post '' do
-      tags 'Create short link'
+    post 'Creates ' do
+      tags 'Create short url'
       consumes 'application/json'
       parameter name: :transformer, in: :body, schema: {
         type: :object,
@@ -28,26 +28,26 @@ RSpec.describe 'transformers', type: :request do
     end
   end
 
-  path '/{nickname}' do
-    get '' do
-      tags 'Show link'
-      consumes 'application/json'
-      parameter name: :nickname, in: :path, type: :string
-
-      response '200', 'get url' do
-        let(:nickname) { Transformer.create(user_url: 'google.com').nickname }
-        run_test!
-      end
-      response '404', 'invalid request' do
-        let(:nickname) { 'nickname' }
-        run_test!
-      end
-    end
-  end
+  # path '/{nickname}' do
+  #   get 'gets ' do
+  #     tags 'Show link'
+  #     consumes 'application/json'
+  #     parameter name: :nickname, in: :path, type: :string
+  #
+  #     response '302', 'get url link' do
+  #       let(:nickname) { Transformer.create(user_url: 'google.com').nickname }
+  #       run_test!
+  #     end
+  #     response '404', 'invalid request' do
+  #       let(:nickname) { 'nickname' }
+  #       run_test!
+  #     end
+  #   end
+  # end
 
   path '/transformers/{nickname}' do
-    delete '' do
-      tags 'Destroy saved link and short url'
+    delete 'Destroy saved short link' do
+      tags 'destroy link and short url'
       consumes 'application/json'
       parameter name: :nickname, in: :path, type: :string
 

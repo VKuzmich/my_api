@@ -5,7 +5,7 @@ class TransformersController < ApplicationController
     transformer = Transformer.new(transformer_params)
 
     if transformer.save
-      render json: { nickname: transformer.nickname }
+      render json: { nickname: transformer.nickname, redirect_url: "#{request.host}/#{transformer.nickname}" }
     else
       render json: transformer.errors, status: :unprocessable_entity
     end
@@ -15,7 +15,9 @@ class TransformersController < ApplicationController
     @transformer = Transformer.find_by(nickname: params[:nickname])
     raise ActiveRecord::RecordNotFound unless @transformer
 
-    render json: { user_url: @transformer.user_url }
+    redirect_link = @transformer.user_url
+    redirect_link.prepend('http://') unless redirect_link.match?(/\Ahttps?:\/\//)
+    redirect_to redirect_link
   end
 
   def destroy

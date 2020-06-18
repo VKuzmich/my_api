@@ -28,6 +28,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'rubycritic', require: false
   gem 'shoulda-matchers'
   gem 'simplecov', require: false, group: :test

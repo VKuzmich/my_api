@@ -1,15 +1,22 @@
 ---
 openapi: 3.0.1
 info:
-  title: This web creates short url. It looks like a clone of bit.ly
+  title: This web-app creates short url.
   version: ''
-  description: 'Create short url, Get original link, Destroy url from database '
+  description: |-
+    Description:
+
+              It works similar to bit.ly.
+              This app creates short url for long links.
+              When it has been created, you can use in messages where it requires limited numbers of symbols.
+              When person use this short url, it will redirect to original link.
+              If you do not need this link, you can delete it from database just using short url
 paths:
   "/transformers":
     post:
-      summary: ''
+      summary: 'Creates '
       tags:
-      - Create short link
+      - Create short url
       parameters: []
       responses:
         '200':
@@ -28,29 +35,11 @@ paths:
                   type: string
               required:
               - user_url
-  "/{nickname}":
-    get:
-      summary: ''
-      tags:
-      - Show link
-      parameters:
-      - name: nickname
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: get url
-          content: {}
-        '404':
-          description: invalid request
-          content: {}
   "/transformers/{nickname}":
     delete:
-      summary: ''
+      summary: Destroy saved short link
       tags:
-      - Destroy saved link and short url
+      - destroy link and short url
       parameters:
       - name: nickname
         in: path
