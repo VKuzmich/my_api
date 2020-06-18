@@ -12,7 +12,7 @@ class Transformer < ApplicationRecord
 
   def generate_nickname
     counter = total_count =  0
-    number_of_symbols = ENV.fetch('NUMBER_OF_SYMBOLS', 3)
+    number_of_symbols = ENV.fetch('NUMBER_OF_SYMBOLS', 3).to_i
     generator = Generator.new
 
     begin
