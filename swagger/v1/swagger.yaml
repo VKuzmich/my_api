@@ -7,10 +7,10 @@ info:
     Description:
 
               It works similar to bit.ly.
-              This app creates short url for long links.
-              When it has been created, you can use in messages where it requires limited numbers of symbols.
-              When person use this short url, it will redirect to original link.
-              If you do not need this link, you can delete it from database just using short url
+              This app creates short url for long links. You can find it after: 'redirect_url:'
+              When it has been created, you can use it in messages where it requires limited numbers of symbols.
+              In order to get original link, just paste short url to browser's address bar and press 'Enter'.
+              If you do not need this link, you can delete it from database just using symbols after '/' in your short url.
 paths:
   "/transformers":
     post:
