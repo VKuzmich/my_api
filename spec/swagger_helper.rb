@@ -17,7 +17,7 @@ RSpec.configure do |config|
           This app creates short url for long links. You can find it after: 'redirect_url:'
           When it has been created, you can use it in messages where it requires limited numbers of symbols.
           In order to get original link, just paste short url to browser's address bar and press 'Enter'.
-          If you do not need this link, you can delete it from database just using symbols after '/' in your short url."
+          If you do not need this link, you can delete it from database just using nickname."
       },
       paths: {},
     }

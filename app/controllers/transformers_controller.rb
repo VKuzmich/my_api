@@ -5,7 +5,7 @@ class TransformersController < ApplicationController
     transformer = Transformer.new(transformer_params)
 
     if transformer.save
-      render json: { nickname: transformer.nickname, redirect_url: "#{request.host}/#{transformer.nickname}" }
+      render json: { nickname: transformer.nickname, redirect_url: "#{request.original_url}/#{transformer.nickname}" }
     else
       render json: transformer.errors, status: :unprocessable_entity
     end
