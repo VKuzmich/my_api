@@ -34,7 +34,6 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'simplecov-rcov'
 
-  gem 'rspec-rails'
   gem 'rswag-specs'
 end
 
